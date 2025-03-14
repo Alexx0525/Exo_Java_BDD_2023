@@ -63,29 +63,6 @@
 <p>Écrire un programme pour vérifier si un nombre est pair ou impair.</p>
 <p>Exemple : Si l'utilisateur saisie la valeur 5, le programme doit afficher "Impair".</p>
 
-<% 
-    String valeurTest = request.getParameter("valeurTest");
-    if (valeurTest != null) {
-        int valeur = Integer.parseInt(valeurTest);
-        
-        if (valeur % 2 == 0) {
-%>
-            <p>Le nombre <%= valeur %> est pair.</p>
-<% 
-        } else {
-%>
-            <p>Le nombre <%= valeur %> est impair.</p>
-<% 
-        }
-    }
-%>
-
-<form action="lesconditions.jsp" method="post">
-    <p>Saisir une valeur pour tester pair ou impair : <input type="text" name="valeurTest"></p>
-    <p><input type="submit" value="Vérifier"></p>
-</form>
-
-<% } %>
 <p><a href="index.html">Retour au sommaire</a></p>
 </body>
 </html>
