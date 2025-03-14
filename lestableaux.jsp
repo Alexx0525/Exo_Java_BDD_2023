@@ -57,9 +57,6 @@ Ecrire un programme afin de faire la somme de toutes les valeurs saisie par l'ut
 %>
     <p>La somme de toutes les valeurs saisies est : <%= sommeTotale %></p>
 
-<h2>Exercice 4 : La valeur maximale</h2>
-<p>Ecrire un programme pour afficher la valeur maximale saisie par l'utilisateur.</p>
-<% 
 
 <h2>Exercice 4 : La valeur maximum</h2>
 <p>Ecrire un programme pour afficher la valeur maximale saisie par l'utilisateur</p>
