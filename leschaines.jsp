@@ -70,6 +70,14 @@ Exemple : L'hiver sera pluvieux</br>
 L'hiver</br>
 sera</br>
 pluvieux</p>
+<p>
+<% 
+    String[] mots = chaine.split(" ");
+    for (String mot : mots) {
+        out.println(mot + "<br>");
+    }
+%>
+</p>
 
 <h2>Exercice 4 : Afficher une lettre sur deux</h2>
 <p>Ecrire le programme pour afficher seulement une lettre sur deux de votre texte </br>
