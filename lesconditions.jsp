@@ -63,8 +63,6 @@
 
 
 <h2>Exercice 2 : Pair ou Impair ?</h2>
-<p>Écrire un programme pour vérifier si un nombre est pair ou impair.</p>
-<p>Exemple : Si l'utilisateur saisie la valeur 5, le programme doit afficher "Impair".</p>
 
 <% 
     String valeurTest = request.getParameter("valeurTest");
