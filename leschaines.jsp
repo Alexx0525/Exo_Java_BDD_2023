@@ -108,6 +108,25 @@ pluvieux</p>
 
 <h2>Exercice 6 : Consonnes et voyelles</h2>
 <p>Ecrire le programme afin de compter les consonnes et les voyelles dans votre texte</p>
+<p>
+<% 
+    int voyelles = 0, consonnes = 0;
+    for (int i = 0; i < chaine.length(); i++) {
+        char c = Character.toLowerCase(chaine.charAt(i));
+        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+            voyelles++;
+        } else if (Character.isLetter(c)) {
+            consonnes++;
+        }
+    }
+%>
+<p>Voyelles : <%= voyelles %></p>
+<p>Consonnes : <%= consonnes %></p>
+
+<% } else { %>
+    <p>Veuillez entrer une chaîne d'au moins 6 caractères.</p>
+<% } %>
+
 
 <% } %>
 <p><a href="index.html">Retour au sommaire</a></p>
