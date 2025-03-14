@@ -61,6 +61,30 @@
 <h2>Exercice 2 : Année de recherche</h2>
 <p>Créer un champ de saisie permettant à l'utilisateur de choisir l'année de sa recherche.</p>
 
+<form action="lesfilms.jsp" method="post">
+        <label for="anneeRecherche">Saisir l'année : </label>
+        <input type="number" id="anneeRecherche" name="anneeRecherche">
+        <input type="submit" value="Rechercher">
+    </form>
+    <% 
+    String anneeRecherche = request.getParameter("anneeRecherche");
+    if (anneeRecherche != null && !anneeRecherche.isEmpty()) {
+        String sql2 = "SELECT idFilm, titre, annee FROM Film WHERE annee = ?";
+        PreparedStatement pstmt2 = conn.prepareStatement(sql2);
+        pstmt2.setInt(1, Integer.parseInt(anneeRecherche));
+        ResultSet rs2 = pstmt2.executeQuery();
+        
+        while (rs2.next()) {
+            String idFilm = rs2.getString("idFilm");
+            String titre = rs2.getString("titre");
+            String annee = rs2.getString("annee");
+            out.println("id : " + idFilm + ", titre : " + titre + ", année : " + annee + "<br>");
+        }
+        rs2.close();
+        pstmt2.close();
+    }
+    %>
+
 <h2>Exercice 3 : Modification du titre du film</h2>
 <p>Créer un fichier permettant de modifier le titre d'un film sur la base de son ID (ID choisi par l'utilisateur)</p>
 
