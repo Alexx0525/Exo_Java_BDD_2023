@@ -112,15 +112,12 @@
     </pre>
 
 <h2>Exercice 7 : La table de multiplication</h2>
-<p>Ecrire le code afin de créser une table de multiplication</p>
-<p>Exemple si l'utilisateur saisie le valeur 5</p>
-<p>5 x 1 = 5</p>
-<p>5 x 2 = 10</p>
-<p>5 x 3 = 15</p>
-<p>5 x 4 = 20</p>
-<p>5 x 5 = 25</p>
+  <pre>
+    <% for (int i = 1; i <= 10; i++) { %>
+        <%= n %> x <%= i %> = <%= n * i %>
+    <% } %>
+    </pre>
 
-<% } %>
-<p><a href="index.html">Retour au sommaire</a></p>
+    <% } %>
 </body>
 </html>
