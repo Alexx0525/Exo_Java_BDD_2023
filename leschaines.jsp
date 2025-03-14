@@ -55,6 +55,14 @@ j</br>
 o</br>
 u</br>
 r</p>
+<p>Exemple : "Bonjour"</p>
+<p>
+<% 
+    for (int i = 0; i < chaine.length(); i++) {
+        out.println(chaine.charAt(i) + "<br>");
+    }
+%>
+</p>
 
 <h2>Exercice 3 : Retour à la ligne</h2>
 <p>La présence d'un espace provoque un retour à la ligne </br>
