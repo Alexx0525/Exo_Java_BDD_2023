@@ -1,135 +1,115 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ page import="java.io.*, java.util.*" %>
+
 <html>
 <head>
-<title>Boucles</title>
+    <title>Exercices sur les boucles</title>
 </head>
-<body bgcolor=white>
-<h1>Exercices sur les boucles</h1>
-<form action="#" method="post">
-    <label for="inputValeur">Saisir le nombre d'étoiles : </label>
-    <input type="text" id="inputValeur" name="valeur">
-    <input type="submit" value="Afficher">
-</form>
-
-<%-- Récupération de la valeur saisie par l'utilisateur --%>
-<% String valeur = request.getParameter("valeur"); %>
+<body bgcolor="white">
+    <h1>Exercices sur les boucles</h1>
     
-<%-- Vérification de l'existence de la valeur --%>
-<% if (valeur != null && !valeur.isEmpty()) { %>
+    <form action="#" method="post">
+        <label for="inputValeur">Saisir le nombre d'étoiles : </label>
+        <input type="text" id="inputValeur" name="valeur">
+        <input type="submit" value="Afficher">
+    </form>
 
-<%-- Boucle for pour afficher une ligne d'étoiles --%>
-    <%int cpt = Integer.parseInt(valeur); %>
+    <%-- Récupération de la valeur saisie par l'utilisateur --%>
+    <% String valeur = request.getParameter("valeur"); %>
+
+    <%-- Vérification de l'existence de la valeur --%>
+    <% if (valeur != null && !valeur.isEmpty()) { 
+        int n = Integer.parseInt(valeur);
+    %>
+    
+    <h2>Affichage d'une ligne d'étoiles</h2>
     <p>
-    <% for (int i = 1; i <= cpt; i++) { %>
-       <%= "*" %>
+    <% for (int i = 1; i <= n; i++) { %>
+        *
     <% } %>
     </p>
 
-<h2>Exercice 1 : Le carré d'étoiles</h2>
-<p>Ecrire le code afin de produire un carré d'étoile</p>
-<p>
-        <% for (int j = 0; j < cpt; j++) { %>
-            <% for (int i = 0; i < cpt; i++) { %>
-                *
-            <% } %>
-            <br>
-        <% } %>
-        </p>
-<p>Exemple si l'utilisateur saisie le valeur 5</p>
-<p>*****</br>*****</br>*****</br>*****</br>*****</p>
+    <h2>Exercice 1 : Le carré d'étoiles</h2>
+    <pre>
+    <% for (int i = 0; i < n; i++) { 
+        for (int j = 0; j < n; j++) { 
+            out.print("*");
+        }
+        out.println();
+    } %>
+    </pre>
 
-<h2>Exercice 2 : Triangle rectangle gauche</h2>
-<p>Ecrire le code afin de produire un triangle rectangle aligné sur la gauche</p>
-<p>
-        <% for (int j = 1; j <= cpt; j++) { %>
-            <% for (int i = 0; i < j; i++) { %>
-                *
-            <% } %>
-            <br>
-        <% } %>
-        </p>
+    <h2>Exercice 2 : Triangle rectangle gauche</h2>
+    <pre>
+    <% for (int i = 1; i <= n; i++) { 
+        for (int j = 0; j < i; j++) { 
+            out.print("*");
+        }
+        out.println();
+    } %>
+    </pre>
 
-<p>Exemple si l'utilisateur saisie le valeur 5</p>
-<p>*</br>**</br>***</br>****</br>*****</p>
+    <h2>Exercice 3 : Triangle rectangle inversé</h2>
+    <pre>
+    <% for (int i = n; i > 0; i--) { 
+        for (int j = 0; j < i; j++) { 
+            out.print("*");
+        }
+        out.println();
+    } %>
+    </pre>
 
-<h2>Exercice 3 : Triangle rectangle inversé</h2>
-<p>Ecrire le code afin de produire un triangle rectangle aligné sur la gauche</p>
+    <h2>Exercice 4 : Triangle rectangle aligné à droite</h2>
+    <pre>
+    <% for (int i = 1; i <= n; i++) { 
+        for (int j = 0; j < n - i; j++) { 
+            out.print(" ");
+        }
+        for (int k = 0; k < i; k++) { 
+            out.print("*");
+        }
+        out.println();
+    } %>
+    </pre>
 
-<p>
-        <% for (int j = cpt; j >= 1; j--) { %>
-            <% for (int i = 0; i < j; i++) { %>
-                *
-            <% } %>
-            <br>
-        <% } %>
-        </p>
+    <h2>Exercice 5 : Triangle isocèle</h2>
+    <pre>
+    <% for (int i = 1; i <= n; i++) { 
+        for (int j = 0; j < n - i; j++) { 
+            out.print(" ");
+        }
+        for (int k = 0; k < (2 * i - 1); k++) { 
+            out.print("*");
+        }
+        out.println();
+    } %>
+    </pre>
 
-<p>Exemple si l'utilisateur saisie le valeur 5</p>
-<p>*****</br>****</br>***</br>**</br>*</p>
-
-<h2>Exercice 4 : Triangle rectangle 2</h2>
-<p>Ecrire le code afin de produire un triangle rectangle aligné sur la droite</p>
-
-<p>
-        <% for (int j = 1; j <= cpt; j++) { %>
-            <% for (int i = 0; i < (cpt - j); i++) { %>
-                &nbsp;
-            <% } %>
-            <% for (int i = 0; i < j; i++) { %>
-                *
-            <% } %>
-            <br>
-        <% } %>
-        </p>
-
-<p>Exemple si l'utilisateur saisie le valeur 5</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**</br>&nbsp;&nbsp;&nbsp;&nbsp;***</br>&nbsp;&nbsp;****</br>*****</p>
-
-<h2>Exercice 5 : Triangle isocele</h2>
-<p>Ecrire le code afin de produire un triangle rectangle aligné sur la droite</p>
-
-<p>
-        <% for (int j = 0; j <= cpt; j++) { %>
-            <% for (int i = 0; i < (cpt - j); i++) { %>
-                &nbsp;
-            <% } %>
-            <% for (int i = 0; i < (2 * j - 1); i++) { %>
-                *
-            <% } %>
-            <br>
-        <% } %>
-        </p>
-
-<p>Exemple si l'utilisateur saisie le valeur 5</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;*</br>&nbsp;&nbsp;&nbsp;**</br>&nbsp;&nbsp;***</br>&nbsp;****</br>*****</p>
-
-<h2>Exercice 6 : Le demi losange</h2>
-<p>Ecrire le code afin de produire un losange</p>
-
-<p>
-        <% for (int j = 1; j <= cpt; j++) { %>
-            <% for (int i = 0; i < (cpt - j); i++) { %>
-                &nbsp;
-            <% } %>
-            <% for (int i = 0; i < j; i++) { %>
-                *
-            <% } %>
-            <br>
-        <% } %>
-        <% for (int j = cpt - 1; j >= 1; j--) { %>
-            <% for (int i = 0; i < (cpt - j); i++) { %>
-                &nbsp;
-            <% } %>
-            <% for (int i = 0; i < j; i++) { %>
-                *
-            <% } %>
-            <br>
-        <% } %>
-        </p>
-
-<p>Exemple si l'utilisateur saisie le valeur 5</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**</br>&nbsp;&nbsp;&nbsp;&nbsp;***</br>&nbsp;&nbsp;****</br>*****</p>
-<p>*****</br>&nbsp;&nbsp;****</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</p>
+    <h2>Exercice 6 : Demi-losange</h2>
+    <pre>
+    <% 
+    // Partie haute
+    for (int i = 1; i <= n; i++) { 
+        for (int j = 0; j < n - i; j++) { 
+            out.print(" ");
+        }
+        for (int k = 0; k < i; k++) { 
+            out.print("*");
+        }
+        out.println();
+    } 
+    // Partie basse
+    for (int i = n - 1; i > 0; i--) { 
+        for (int j = 0; j < n - i; j++) { 
+            out.print(" ");
+        }
+        for (int k = 0; k < i; k++) { 
+            out.print("*");
+        }
+        out.println();
+    } 
+    %>
+    </pre>
 
 <h2>Exercice 7 : La table de multiplication</h2>
 <p>Ecrire le code afin de créser une table de multiplication</p>
