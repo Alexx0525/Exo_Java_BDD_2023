@@ -54,13 +54,13 @@
        
         <%for(int i=0;i<(j+1);i++){%>
         <%System.out.print("*");%>
-        }
+        <%}%>
   
   <%System.out.println("");%>
-  }
+  <%}%>
 
-  }
-}
+  <%}%>
+<%}%>
 </p>
 
 <p>Exemple si l'utilisateur saisie le valeur 5</p>
