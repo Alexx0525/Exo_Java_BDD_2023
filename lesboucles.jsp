@@ -28,18 +28,18 @@
 <h2>Exercice 1 : Le carré d'étoiles</h2>
 <p>Ecrire le code afin de produire un carré d'étoile</p>
 
-<%public class Main {
-  public static void main(String[] args) {
+<% public class Main {%>
+  <%public static void main(String[] args) {%>
     
-    int Val = 5;
+    <%int Val = 5;%>
 
-  for(int j=0;j<Val;j++){
+  <%for(int j=0;j<Val;j++){%>
        
-        for(int i=0;i<Val;i++){
-        System.out.print("*");
+        <%for(int i=0;i<Val;i++){%>
+        <%System.out.print("*");%>
         }
   
-  System.out.println("");
+  <%System.out.println("");%>
   }
 
   }
