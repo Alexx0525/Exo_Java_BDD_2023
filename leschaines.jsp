@@ -47,15 +47,6 @@
 
 <h2>Exercice 2 : Affichage verticale</h2>
 <p>Ecrire le programme pour afficher le texte en vertical</br>
-Exemple : Bonjour</br>
-B</br>
-o</br>
-n</br>
-j</br>
-o</br>
-u</br>
-r</p>
-<p>Exemple : "Bonjour"</p>
 <p>
 <% 
     for (int i = 0; i < chaine.length(); i++) {
@@ -66,11 +57,7 @@ r</p>
 
 <h2>Exercice 3 : Retour à la ligne</h2>
 <p>La présence d'un espace provoque un retour à la ligne </br>
-<p>Exemple : "L'hiver sera pluvieux"</p>
-L'hiver</br>
-sera</br>
-pluvieux</p>
-<p>
+
 <% 
     String[] mots = chaine.split(" ");
     for (String mot : mots) {
@@ -82,7 +69,6 @@ pluvieux</p>
 <h2>Exercice 4 : Afficher une lettre sur deux</h2>
 <p>Ecrire le programme pour afficher seulement une lettre sur deux de votre texte </br>
 
-<p>Exemple : "L'hiver sera pluvieux"</p>
 <p>
 <% 
     for (int i = 0; i < chaine.length(); i += 2) {
@@ -93,7 +79,6 @@ pluvieux</p>
 
 <h2>Exercice 5 : La phrase en verlant</h2>
 <p>Ecrire le programme afin d'afficher le texte en verlant </br>
-<p>Exemple : "L'hiver sera pluvieux" devient "xueivulp ares revih'l".</p>
 <p>
 <% 
     String[] motsVerlan = chaine.split(" ");
