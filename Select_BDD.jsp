@@ -42,6 +42,22 @@
 <h2>Exercice 1 : Les films entre 2000 et 2015</h2>
 <p>Extraire les films dont l'année est supérieur à l'année 2000 et inférieur à 2015.</p>
 
+<% 
+    // Requête pour extraire les films entre 2000 et 2015
+    String sql1 = "SELECT idFilm, titre, annee FROM Film WHERE annee > 2000 AND annee < 2015";
+    PreparedStatement pstmt1 = conn.prepareStatement(sql1);
+    ResultSet rs1 = pstmt1.executeQuery();
+    
+    while (rs1.next()) {
+        String idFilm = rs1.getString("idFilm");
+        String titre = rs1.getString("titre");
+        String annee = rs1.getString("annee");
+        out.println("id : " + idFilm + ", titre : " + titre + ", année : " + annee + "<br>");
+    }
+    rs1.close();
+    pstmt1.close();
+    %>
+
 <h2>Exercice 2 : Année de recherche</h2>
 <p>Créer un champ de saisie permettant à l'utilisateur de choisir l'année de sa recherche.</p>
 
