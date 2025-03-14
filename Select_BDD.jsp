@@ -115,6 +115,31 @@
 
 <h2>Exercice 4 : La valeur maximum</h2>
 <p>Créer un formulaire pour saisir un nouveau film dans la base de données</p>
+
+<form action="lesfilms.jsp" method="post">
+        <label for="titreFilm">Titre du film : </label>
+        <input type="text" id="titreFilm" name="titreFilm">
+        <label for="anneeFilm">Année du film : </label>
+        <input type="number" id="anneeFilm" name="anneeFilm">
+        <input type="submit" value="Ajouter le film">
+    </form>
+    <% 
+    String titreFilm = request.getParameter("titreFilm");
+    String anneeFilm = request.getParameter("anneeFilm");
+    if (titreFilm != null && !titreFilm.isEmpty() && anneeFilm != null && !anneeFilm.isEmpty()) {
+        String sql4 = "INSERT INTO Film (titre, annee) VALUES (?, ?)";
+        PreparedStatement pstmt4 = conn.prepareStatement(sql4);
+        pstmt4.setString(1, titreFilm);
+        pstmt4.setInt(2, Integer.parseInt(anneeFilm));
+        int rowsInserted = pstmt4.executeUpdate();
+        if (rowsInserted > 0) {
+            out.println("Nouveau film ajouté avec succès !<br>");
+        } else {
+            out.println("Erreur lors de l'ajout du film.<br>");
+        }
+        pstmt4.close();
+    }
+    %>
 <hr>
 <h3>Projet Bibliothèque</h3>
 <p>Votre projet consiste à concevoir et développer une application de gestion de bibliothèque moderne qui simplifie le processus de prêt et de retour de livres. Les fonctionnalités attendues dans le cadre de ce projet sont les suivantes :
