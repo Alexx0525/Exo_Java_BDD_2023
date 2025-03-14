@@ -105,6 +105,19 @@ Ecrire un programme afin de faire la somme de toutes les valeurs saisie par l'ut
 <p>Trouvez la valeur la plus proche de 0 (chiffres positifs ou négatifs)</p>
 <p>En cas d'égalité entre un chiffre positif et négatif, affichez le chiffre positif</p>
 
+<% 
+    int plusProcheDeZero2 = Integer.parseInt(tableauDeChiffres[0]);
+    for (String chiffre : tableauDeChiffres) {
+        int val = Integer.parseInt(chiffre);
+        if (Math.abs(val) < Math.abs(plusProcheDeZero2) || (Math.abs(val) == Math.abs(plusProcheDeZero2) && val > 0)) {
+            plusProcheDeZero2 = val;
+        }
+    }
+%>
+    <p>La valeur la plus proche de 0 (avec préférence pour le positif) est : <%= plusProcheDeZero2 %></p>
+
+<% } %>
+
 <% } %>
 <p><a href="index.html">Retour au sommaire</a></p>
 </body>
