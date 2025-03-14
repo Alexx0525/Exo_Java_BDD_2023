@@ -93,8 +93,18 @@ pluvieux</p>
 
 <h2>Exercice 5 : La phrase en verlant</h2>
 <p>Ecrire le programme afin d'afficher le texte en verlant </br>
-Exemple : L'hiver sera pluvieux</br>
-xueivulp ares revih'l</p>
+<p>Exemple : "L'hiver sera pluvieux" devient "xueivulp ares revih'l".</p>
+<p>
+<% 
+    String[] motsVerlan = chaine.split(" ");
+    for (String mot : motsVerlan) {
+        for (int i = mot.length() - 1; i >= 0; i--) {
+            out.print(mot.charAt(i));
+        }
+        out.print(" ");
+    }
+%>
+</p>
 
 <h2>Exercice 6 : Consonnes et voyelles</h2>
 <p>Ecrire le programme afin de compter les consonnes et les voyelles dans votre texte</p>
