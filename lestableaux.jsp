@@ -64,6 +64,18 @@ Ecrire un programme afin de faire la somme de toutes les valeurs saisie par l'ut
 <h2>Exercice 4 : La valeur maximum</h2>
 <p>Ecrire un programme pour afficher la valeur maximale saisie par l'utilisateur</p>
 
+<p>Ecrire un programme pour afficher la valeur maximale saisie par l'utilisateur.</p>
+<% 
+    int max = Integer.parseInt(tableauDeChiffres[0]);
+    for (String chiffre : tableauDeChiffres) {
+        int val = Integer.parseInt(chiffre);
+        if (val > max) {
+            max = val;
+        }
+    }
+%>
+    <p>La valeur maximale est : <%= max %></p>
+
 <h2>Exercice 5 : La valeur minimale</h2>
 <p>Ecrire un programme pour afficher la valeur minimale saisie par l'utilisateur</p>
 
