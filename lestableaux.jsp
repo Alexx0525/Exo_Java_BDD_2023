@@ -23,6 +23,7 @@
     
 <h2>Exercice 1 : La carré de la première valeur</h2>
 <p>Ecrire un programme afin d'afficher le carré de la première valeur</p>
+
 <% 
     if (tableauDeChiffres.length > 0) {
         int premierChiffre = Integer.parseInt(tableauDeChiffres[0]);
@@ -34,6 +35,7 @@
 
 <h2>Exercice 2 : La somme des 2 premières valeurs</h2>
 <p>Ecrire un programme afin d'afficher la somme des deux premières valeurs</p>
+
 <% 
     if (tableauDeChiffres.length > 1) {
         int sommePremiersChiffres = Integer.parseInt(tableauDeChiffres[0]) + Integer.parseInt(tableauDeChiffres[1]);
@@ -46,6 +48,18 @@
 <h2>Exercice 3 : La somme de toutes les valeurs</h2>
 <p>L'utilisateur peut à présent saisir autant de valeurs qu'il le souhaite dans champs de saisie.</br>
 Ecrire un programme afin de faire la somme de toutes les valeurs saisie par l'utilisateur</p>
+
+<% 
+    int sommeTotale = 0;
+    for (String chiffre : tableauDeChiffres) {
+        sommeTotale += Integer.parseInt(chiffre);
+    }
+%>
+    <p>La somme de toutes les valeurs saisies est : <%= sommeTotale %></p>
+
+<h2>Exercice 4 : La valeur maximale</h2>
+<p>Ecrire un programme pour afficher la valeur maximale saisie par l'utilisateur.</p>
+<% 
 
 <h2>Exercice 4 : La valeur maximum</h2>
 <p>Ecrire un programme pour afficher la valeur maximale saisie par l'utilisateur</p>
