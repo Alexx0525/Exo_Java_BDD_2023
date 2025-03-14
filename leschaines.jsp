@@ -108,10 +108,6 @@
 <p>Voyelles : <%= voyelles %></p>
 <p>Consonnes : <%= consonnes %></p>
 
-<% } else { %>
-    <p>Veuillez entrer une chaîne d'au moins 6 caractères.</p>
-<% } %>
-
 
 <% } %>
 <p><a href="index.html">Retour au sommaire</a></p>
