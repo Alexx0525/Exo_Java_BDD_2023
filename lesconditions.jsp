@@ -1,68 +1,113 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page session="true"%>
+
 <html>
 <head>
-<title>les conditions</title>
+    <title>Gestion des Tâches</title>
 </head>
 <body bgcolor=white>
-<h1>Exercices sur les conditions</h1>
+<h1>Saisir une tâche</h1>
 <form action="#" method="post">
-    <p>Saisir la valeur 1 : <input type="text" id="inputValeur" name="valeur1">
-    <p>Saisir la valeur 2 : <input type="text" id="inputValeur" name="valeur2">
-    <p><input type="submit" value="Afficher">
-</form>
-<%-- Récupération des valeurs --%>
-    <% String valeur1 = request.getParameter("valeur1"); %>
-    <% String valeur2 = request.getParameter("valeur2"); %>
+    <label for="inputValeur">Nom de la tâche : </label>
+    <input type="text" id="inputValeur" name="valeur" required>
 
-    <%-- Vérification de la condition entre les deux valeurs --%>
-    <% if (valeur1 != null && valeur2 != null) { %>
-        <%-- Conversion des valeurs en entiers pour la comparaison --%>
-        <% int intValeur1 = Integer.parseInt(valeur1); %>
-        <% int intValeur2 = Integer.parseInt(valeur2); %>
-        
-        <%-- Condition if pour comparer les valeurs --%>
-        <% if (intValeur1 > intValeur2) { %>
-            <p>Valeur 1 est supérieure à Valeur 2.</p>
-        <% } else if (intValeur1 < intValeur2) { %>
-            <p>Valeur 1 est inférieure à Valeur 2.</p>
-        <% } else { %>
-            <p>Valeur 1 est égale à Valeur 2.</p>
-        <% } %>
-   
-    
-<h2>Exercice 1 : Comparaison 1</h2>
-<p>Demander à l'utilisateur de saisir 3 valeurs (A, B, C), et vérifier si la valeur de C est comprise entre A et B.</p>
-<p>Exemple :</p>
-<p>A = 10</p>
-<p>B = 20</p>
-<p>C = 15</p>
-<p>Vérification : Est-ce que C est compris entre A et B ?</p>
-<% 
-    String valeurA = request.getParameter("valeurA");
-    String valeurB = request.getParameter("valeurB");
-    String valeurC = request.getParameter("valeurC");
-    
-    if (valeurA != null && valeurB != null && valeurC != null) {
-        int A = Integer.parseInt(valeurA);
-        int B = Integer.parseInt(valeurB);
-        int C = Integer.parseInt(valeurC);
-        
-        if (C > A && C < B) {
-%>
-            <p>Oui, C est compris entre A et B.</p>
-<% 
-        } else {
-%>
-            <p>Non, C n'est pas compris entre A et B.</p>
-<% 
+    <label for="dateFin">Date de fin : </label>
+    <input type="date" id="dateFin" name="dateFin" required>
+
+    <input type="submit" value="Enregistrer">
+</form>
+
+<%! 
+    class MyClass {
+        String nameTache;
+        boolean terminee;
+        String dateFin;
+
+        public MyClass(String name, boolean terminee, String dateFin) {
+            this.nameTache = name;
+            this.terminee = terminee;
+            this.dateFin = dateFin;
+        }
+
+        public void setStatus(boolean status) {
+            this.terminee = status;
+        }
+
+        public String getStatus() {
+            return terminee ? "Terminée" : "Non terminée";
         }
     }
 %>
 
-<h2>Exercice 2 : Pair ou Impair ?</h2>
-<p>Écrire un programme pour vérifier si un nombre est pair ou impair.</p>
-<p>Exemple : Si l'utilisateur saisie la valeur 5, le programme doit afficher "Impair".</p>
+<%
+    java.util.List<MyClass> taches = (java.util.List<MyClass>) session.getAttribute("taches");
 
-<p><a href="index.html">Retour au sommaire</a></p>
+    if (taches == null) {
+        taches = new java.util.ArrayList<MyClass>();
+    }
+
+    String valeur = request.getParameter("valeur");
+    String dateFin = request.getParameter("dateFin");
+
+    if (valeur != null && !valeur.isEmpty() && dateFin != null && !dateFin.isEmpty()) {
+        taches.add(new MyClass(valeur, false, dateFin));
+    }
+
+    String termineeParam = request.getParameter("terminee");
+    String taskIndexParam = request.getParameter("taskIndex");
+
+    if (taskIndexParam != null) {
+        int taskIndex = Integer.parseInt(taskIndexParam);
+        if (taskIndex >= 0 && taskIndex < taches.size()) {
+            boolean terminee = termineeParam != null && termineeParam.equals("true");
+            taches.get(taskIndex).setStatus(terminee);
+        }
+    }
+
+    String deleteIndexParam = request.getParameter("deleteIndex");
+    if (deleteIndexParam != null) {
+        int deleteIndex = Integer.parseInt(deleteIndexParam);
+        if (deleteIndex >= 0 && deleteIndex < taches.size()) {
+            taches.remove(deleteIndex);
+        }
+    }
+
+    session.setAttribute("taches", taches);
+%>
+
+<h2>Liste des Tâches</h2>
+<table border="1">
+    <tr>
+        <th>Nom de la tâche</th>
+        <th>Statut</th>
+        <th>Date de fin</th>
+        <th>Actions</th>
+    </tr>
+    <%
+        for (int i = 0; i < taches.size(); i++) {
+            MyClass task = taches.get(i);
+    %>
+    <tr>
+        <td><%= task.nameTache %></td>
+        <td><%= task.getStatus() %></td>
+        <td><%= task.dateFin %></td>
+        <td>
+            <form action="#" method="post" style="display:inline;">
+                <input type="hidden" name="taskIndex" value="<%= i %>">
+                <input type="checkbox" name="terminee" value="true"
+                    <%= task.terminee ? "checked" : "" %>
+                    onchange="this.form.submit()">
+            </form>
+            <form action="#" method="post" style="display:inline;">
+                <input type="hidden" name="deleteIndex" value="<%= i %>">
+                <input type="submit" value="Supprimer">
+            </form>
+        </td>
+    </tr>
+    <%
+        }
+    %>
+</table>
+
 </body>
 </html>
