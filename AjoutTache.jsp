@@ -1,6 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.sql.*" %>
-
 <html>
 <body>
 <h1>Liste des tâches</h1>
