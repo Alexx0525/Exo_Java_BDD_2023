@@ -1,37 +1,43 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@ page import="java.util.*" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-<title>Taches</title>
+    <title>Gestionnaire de Tâches</title>
 </head>
-<body bgcolor=white>
-<h1>Saisir une tache</h1>
-<form action="#" method="post">
-    <label for="inputValeur">Saisir le nom d'une tache : </label>
-    <input type="text" id="inputValeur" name="valeur">
-    <input type="submit" value="Enregistrer">
-</form>
+<body>
+    <h2>Ajouter une tâche</h2>
 
-<%! 
-    class MyClass {
-        String nameTache;
+    <form method="post" action="taches.jsp">
+        Tâche : <input type="text" name="tache" required />
+        Terminée ? <input type="checkbox" name="terminee" />
+        <input type="submit" value="Ajouter" />
+    </form>
 
-        public MyClass(String name) {
-            nameTache = name;
+    <%
+        // Récupération ou création de la liste de tâches (clé = nom, valeur = terminé ?)
+        Map<String, Boolean> taches = (Map<String, Boolean>) session.getAttribute("taches");
+        if (taches == null) {
+            taches = new LinkedHashMap<>();
+            session.setAttribute("taches", taches);
         }
-    }
-%>
 
-<%
-    String valeur = request.getParameter("valeur");
+        // Traitement du formulaire
+        String nouvelleTache = request.getParameter("tache");
+        boolean estTerminee = request.getParameter("terminee") != null;
 
-    if (valeur != null && !valeur.isEmpty()) {
-        MyClass tache = new MyClass(valeur);
-%>
-        <p>Nom de la tÃ¢che : <%= tache.nameTache %></p>
-<%
-    }
-%>
+        if (nouvelleTache != null && !nouvelleTache.trim().isEmpty()) {
+            taches.put(nouvelleTache, estTerminee);
+        }
+    %>
 
+    <h2>Liste des tâches</h2>
+    <ul>
+        <%
+            for (Map.Entry<String, Boolean> entry : taches.entrySet()) {
+                String titre = entry.getKey();
+                Boolean terminee = entry.getValue();
+            }
+        %>
+    </ul>
 </body>
 </html>
