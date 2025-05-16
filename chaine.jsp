@@ -1,16 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Exercice Chaine JSP</title>
+</head>
+<body>
 <%
     String bonjour = "salut la compagnie";
 
-    // Fonction pour mettre la première lettre en majuscule
-    String capitalizeFirstLetter(String input) {
-        if (input == null || input.isEmpty()) {
-            return input;
-        }
-        return input.substring(0, 1).toUpperCase() + input.substring(1);
-    }
+    // Afficher en majuscules
+    out.println("<p>Majuscules : " + bonjour.toUpperCase() + "</p>");
 
-    out.println("Majuscules : " + bonjour.toUpperCase() + "<br>");
-    out.println("Première lettre en majuscule : " + capitalizeFirstLetter(bonjour));
+    // Afficher avec seulement la première lettre en majuscule
+    String firstLetter = bonjour.substring(0, 1).toUpperCase();
+    String rest = bonjour.substring(1);
+    String capitalized = firstLetter + rest;
+
+    out.println("<p>Première lettre en majuscule : " + capitalized + "</p>");
 %>
-
+</body>
+</html>
